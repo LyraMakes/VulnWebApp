@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Not A Vulnerable App!</title>
+  </head>
+
+  <body>
+  	<h1>Not a Vulnerable Application</h1>
+  	<h4>Warning, we are not responsible for any claims made.</h4>
+
+  	<p>Please Enter your query:</p>
+  	<form action="/", method="post">
+  		<input type="text" id="icmd" name="command"><br>
+  		<input type="submit" value="Submit">
+  	</form>
+
+  	{% if result %}
+  	<p>Results of your command:</p>
+  	<span>{{result}}</span>
+  	{% endif %}
+
+  </body>
+
+</html>
